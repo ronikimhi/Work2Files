@@ -12,7 +12,8 @@ public class Racer implements Runnable {
         if (speed > 0 && speed < 11) {
             this.speed = speed;
         } else {
-            System.out.println("ERROR! speed is out of limits");
+            this.speed=1;
+            System.out.println("ERROR! speed is out of limits. speed is now initialize to 1");
         }
         this.track = track;
         this.id = globalId;
@@ -25,10 +26,22 @@ public class Racer implements Runnable {
         for(int i=1; i<=100; i++){
             if(i==100){
                 track.setFinishedRacers(track.getFinishedRacers()+1);
-                System.out.println(String.format("Runner %d ran %d meters\nRunner %d finished %dst", id, i, id, track.getFinishedRacers()));
+                System.out.println(String.format("Runner %d ran %d meters\nRunner %d finished %s", id, i, id,place(track.getFinishedRacers()) ));
             }else {
                 System.out.println(String.format("Runner %d ran %d meters", id, i));
             }
+        }
+    }
+
+    public String place(int num){
+        if(num%10==1){
+            return num +"st";
+        }else if(num%10==2){
+            return num+"nd";
+        }else if(num%10==3){
+            return num+"rd";
+        }else {
+            return num+"th";
         }
     }
 
