@@ -7,7 +7,7 @@ public class SelfPlayer extends Player implements Runnable{
     Game game;
     private Random rnd = new Random();
 
-    public SelfPlayer(char ch, Game game) throws Exception {
+    public SelfPlayer(char ch, Game game) {
         super(ch);
         this.game=game;
     }

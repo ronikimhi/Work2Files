@@ -1,17 +1,40 @@
 package XO;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main{
     public static void main(String[] args){
-        try {
-            UserGame newGame = new UserGame();
-            Thread t1 = new Thread(newGame.p1);
-            Thread t2 = new Thread(newGame.p2);
-            t1.start();
-            t2.start();
-        }catch (Exception e){
-            System.out.println("error");
+        Scanner input = new Scanner(System.in);
+        int option = 0;
+        boolean inputFlag=true;
+        System.out.print("Welcome to XO game \nYou have 2 optional game, \n1. self game\n2. user game\nPlease choose which game do you want to play 1 or 2: ");
+        while(inputFlag){
+            try{
+                option = input.nextInt();
+                inputFlag = false;
+            }catch (Exception e){
+                System.out.print("Input incorrect !, Please enter only digit: ");
+                input.next();
+            }
+            if((option < 1 || option > 2) && !inputFlag){
+                System.out.print("Input incorrect !, Please choose option between 1 - 2: ");
+                inputFlag = true;
+            }
         }
+        Thread t1 = null,t2 = null;
+        switch (option){
+            case 1:
+                SelfGame selfGame1 = new SelfGame();
+                t1 = new Thread(selfGame1.p1);
+                t2 = new Thread(selfGame1.p2);
+                break;
+            case 2:
+                UserGame userGame1 = new UserGame();
+                t1 = new Thread(userGame1.p1);
+                t2 = new Thread(userGame1.p2);
+                break;
+        }
+        t1.start();
+        t2.start();
     }
 }

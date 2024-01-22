@@ -8,7 +8,7 @@ public class UserPlayer extends Player implements Runnable{
     private Random rnd = new Random();
     Scanner input = new Scanner(System.in);
 
-    public UserPlayer(char ch, Game game) throws Exception {
+    public UserPlayer(char ch, Game game)  {
         super(ch);
         this.game=game;
     }

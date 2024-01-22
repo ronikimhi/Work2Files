@@ -6,7 +6,7 @@ public class SelfGame extends Game{
     SelfPlayer p1;
     SelfPlayer p2;
 
-    public SelfGame() throws Exception {
+    public SelfGame() {
         super();
         this.p1 = new SelfPlayer('X',this);
         this.p2 = new SelfPlayer('O',this);
