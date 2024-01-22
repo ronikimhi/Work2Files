@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 abstract public class Game  {
-    public static enum player {X,O}
+    public enum player {X,O}
     public player [][] gameBoard = new player[5][5];
     public boolean winBreakFlag = false;
     private player turn;
@@ -18,13 +18,13 @@ abstract public class Game  {
             }
         }
         turn = player.values()[new Random().nextInt(player.values().length)];
-
+        System.out.println("------------------\n" + turn + " start first");
     }
     public synchronized void printBoard(){
         for(int i = 0; i<gameBoard.length; i++){
             for(int j = 0; j<gameBoard[i].length; j++){
                 if(gameBoard[i][j]==null){
-                    System.out.print("[]\t");
+                    System.out.print("-\t");
                 }else {
                     System.out.print(gameBoard[i][j] + "\t");
                 }

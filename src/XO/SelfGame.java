@@ -1,6 +1,6 @@
 package XO;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 public class SelfGame extends Game{
     SelfPlayer p1;
@@ -8,20 +8,13 @@ public class SelfGame extends Game{
 
     public SelfGame() {
         super();
-        this.p1 = new SelfPlayer('X',this);
-        this.p2 = new SelfPlayer('O',this);
-    }
-
-
-    public ArrayList getFreeCells(){
-        ArrayList arrFreeCells = new ArrayList<>();
-        for(int i = 0; i<gameBoard.length; i++){
-            for(int j = 0; j<gameBoard[i].length; j++){
-                if(gameBoard[i][j] == null){
-                    arrFreeCells.add(new MatrixCell(i,j));
-                }
-            }
+        player temp = player.values()[new Random().nextInt(player.values().length)];
+        this.p1 = new SelfPlayer(temp,this);
+        if(temp==player.X) {
+            this.p2 = new SelfPlayer(player.O, this);
+        }else{
+            this.p2 = new SelfPlayer(player.X, this);
         }
-        return arrFreeCells;
+        System.out.println("------------------");
     }
 }

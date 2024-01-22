@@ -12,7 +12,6 @@ public class Racer implements Runnable {
     public Racer(int speed, Track track) {
         id = globalId++;
         this.track = track;
-
         if(speed > 10 || speed <1){
             Random rnd = new Random();
             this.speed= rnd.nextInt(1,11);

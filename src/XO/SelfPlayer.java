@@ -1,14 +1,12 @@
 package XO;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class SelfPlayer extends Player implements Runnable{
     Game game;
-    private Random rnd = new Random();
 
-    public SelfPlayer(char ch, Game game) {
-        super(ch);
+    public SelfPlayer(Game.player p1 , Game game) {
+        super(p1);
         this.game=game;
     }
 
@@ -29,19 +27,19 @@ public class SelfPlayer extends Player implements Runnable{
                 game.winBreakFlag=true;
                 break;
             }
-            synchronized (game) {
-                MatrixCell cell = (MatrixCell) game.getFreeCells().get(rnd.nextInt(game.getFreeCells().size()));
-                game.gameBoard[cell.i][cell.j] = game.getTurn();
-                game.printBoard();
 
-                if (game.winChecker(cell, game.getTurn())) {
-                    System.out.println("player " + newPlayer + " - win the game !!");
-                    game.winBreakFlag=true;
-                    break;
-                }
-                game.deleteCell(cell);
-                game.setTurn();
+            MatrixCell cell = (MatrixCell) game.getFreeCells().get(new Random().nextInt(game.getFreeCells().size()));
+            game.gameBoard[cell.i][cell.j] = game.getTurn();
+            game.printBoard();
+
+            if (game.winChecker(cell, game.getTurn())) {
+                System.out.println("player " + newPlayer + " - win the game !!");
+                game.winBreakFlag=true;
+                break;
             }
+
+            game.deleteCell(cell);
+            game.setTurn();
         }
     }
 
