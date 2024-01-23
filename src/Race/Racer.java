@@ -9,6 +9,10 @@ public class Racer implements Runnable {
     private int speed;
     private Track track;
 
+    /*
+    1. create unique id for every Thread
+    2. check if the racer speed is in our limit between 1<->10 and if not creating new speed by random
+     */
     public Racer(int speed, Track track) {
         id = globalId++;
         this.track = track;
@@ -21,15 +25,18 @@ public class Racer implements Runnable {
         }
     }
 
+
     public void go (){
         Thread.currentThread().setPriority(speed);
+        //run in for loop to 99
         for(int i = 1 ; i<100; i++){
             System.out.println(String.format("Runner %d ran %d meters", id,i));
         }
         synchronized (track) {
-            int winningNumber = ++track.finishedRacers;
-            String winningPlace = returnWinningPlace(winningNumber);
-            System.out.println(String.format("Runner %d ran %d meters\n", id, 100) + String.format("Runner %d finished %s", id, winningPlace));
+            //get the winning place, print 100, and then print the winning place
+            track.addOneFinishedRacers();
+            int winningNumber = track.getFinishedRacers();
+            System.out.println(String.format("Runner %d ran %d meters\n", id, 100) + String.format("Runner %d finished %s", id, returnWinningPlace(winningNumber)));
         }
     }
 
@@ -44,21 +51,6 @@ public class Racer implements Runnable {
             return num+"th";
         }
     }
-
-//    private final void returnWinningPlace(){
-//        int winningNumber = ++track.finishedRacers;
-//        String winningPlace = "";
-//        if(winningNumber%10==1){
-//            winningPlace =  winningNumber +"st";
-//        }else if(winningNumber%10==2){
-//            winningPlace = winningNumber+"nd";
-//        }else if(winningNumber%10==3){
-//            winningPlace = winningNumber+"rd";
-//        }else {
-//            winningPlace = winningNumber+"th";
-//        }
-//        System.out.println(String.format("Runner %d ran %d meters\n", id, 100) + String.format("Runner %d finished %s", id, winningPlace));
-//    }
 
 
     @Override
