@@ -1,3 +1,5 @@
+//Roni Kimhi 315298182, Tomer Sananes 207698986
+
 package XO;
 
 //create cell for our matrix that contain line and col

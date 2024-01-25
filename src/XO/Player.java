@@ -1,6 +1,6 @@
-package XO;
+//Roni Kimhi 315298182, Tomer Sananes 207698986
 
-import java.util.Random;
+package XO;
 
 // abstract class that create the player and save it with no option to change the value
 public abstract class Player{

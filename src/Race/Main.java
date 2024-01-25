@@ -1,3 +1,6 @@
+//Roni Kimhi 315298182, Tomer Sananes 207698986
+//https://github.com/ronikimhi/Work2Files
+
 package Race;
 
 public class Main {
